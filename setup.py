@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="kora", # Replace with your own username
-    version="0.0.21",
+    name="kora", 
+    version="0.0.22",
     author="Korakot Chaovavanich",
     author_email="korakot@gmail.com",
     description="Convenient tools for Colab",
