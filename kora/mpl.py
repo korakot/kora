@@ -6,6 +6,7 @@ def add_thai_font():
     url = 'https://github.com/korakot/kora/raw/master/THSarabunChula.ttf'
     add_font(url)
 
+add_font_thai = add_thai_font
 
 def add_font(url):
     if url.startswith('http'):
