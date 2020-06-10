@@ -3,7 +3,7 @@ from matplotlib import *  # font_manager, ft2font, rc
 
 
 def add_thai_font():
-    url = 'https://github.com/korakot/kora/raw/master/THSarabunChula.ttf'
+    url = 'https://raw.githubusercontent.com/korakot/kora/40a2bb269383501965c0745055f1ad4f23e167a3/THSarabunChula.ttf'
     add_font(url)
 
 add_font_thai = add_thai_font
