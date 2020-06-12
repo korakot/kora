@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from subprocess import getoutput
 from IPython.display import HTML
-from typing import List
+from typing import List, Union
 
 _TEMPLATE = '''
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -49,7 +49,7 @@ def convert(node: dict, show_num: bool):
     return data
 
 
-def path_tree(path: str = '.', show_num: bool = False):
+def path_tree(path: Union[str, Path] = '.', show_num: bool = False):
     """ Given a path to a directory, display its tree """
     root = {}
     for p in Path(path).rglob('*'):

@@ -12,7 +12,7 @@ from IPython.display import HTML
 from .json import render
 
 
-def cut(input : str = 'video.mp4', start: float = 0.0, end: float = 60.0, output: str = None):
+def cut(input: str = 'video.mp4', start: float = 0.0, end: float = 60.0, output: str = None):
     def ts(mn: float):
         m, s = divmod(100*mn, 100)
         return '{:02.0f}:{:05.2f}'.format(m,s)
