@@ -7,7 +7,14 @@ from pyvis.network import *
 class Network(pyvis.network.Network):
     """ Same as pyvis but change for Colab notebook """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, height=500, width=500, **kwargs):
+        """ Allow integer as h, w and set notebook=True """
+        if type(height)==int:
+            height = '%dpx' % height
+        if type(width)==int:
+            width = '%dpx' % width
+        kwargs['height'] = height
+        kwargs['width']  = width
         kwargs['notebook'] = True
         super().__init__(*args, **kwargs)
 
