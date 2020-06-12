@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from subprocess import getoutput
 from IPython.display import HTML
+from typing import List, Union
 
 _TEMPLATE = '''
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -15,7 +16,7 @@ $("#tree").fancytree({
 </script>
 '''
 
-def fancytree(data):
+def fancytree(data: List[dict]):
     """ Display data with fancytree.
 
     Data should be in a correct format, i.e.
@@ -30,7 +31,7 @@ def fancytree(data):
     return HTML(_TEMPLATE % json.dumps(data))
 
 
-def convert(node, show_num):
+def convert(node: dict, show_num: bool):
     """ Convert a compact format into fancytree data format 
     
     node is a dict mapping from folder_name to list of children nodes.
@@ -48,7 +49,7 @@ def convert(node, show_num):
     return data
 
 
-def path_tree(path='.', show_num=False):
+def path_tree(path: Union[str, Path] = '.', show_num: bool = False):
     """ Given a path to a directory, display its tree """
     root = {}
     for p in Path(path).rglob('*'):
@@ -61,8 +62,11 @@ def path_tree(path='.', show_num=False):
     return fancytree(data)
 
 
-def tar_tree(filename, show_num=False):
-    """ Display contents inside a tar file using fancytree """
+def tar_tree(filename: str, show_num: bool = False):
+    """ Display contents inside a tar file using fancytree
+    :param str filename: file name
+    :param bool show_num: show number
+    """
     root = {}
     lines = getoutput('tar -tzf '+filename).splitlines()
     for line in lines:

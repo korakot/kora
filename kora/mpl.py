@@ -8,7 +8,7 @@ def add_thai_font():
 
 add_font_thai = add_thai_font
 
-def add_font(url):
+def add_font(url: str) -> None:
     if url.startswith('http'):
         filename = urlretrieve(url)[0]  # in /tmp/...
     else:
@@ -18,7 +18,7 @@ def add_font(url):
     set_font(family=name)     # select this font automatically
 
 
-def get_font_name(filename):
+def get_font_name(filename: str):
     font = ft2font.FT2Font(filename)
     return font.family_name
 

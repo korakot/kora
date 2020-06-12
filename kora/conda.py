@@ -22,6 +22,6 @@ os.chmod('mini.sh', 0o777)
 os.system("./mini.sh -b -f -p /usr/local")
 sys.path.insert(5, '/usr/local/lib/python3.6/site-packages')
 
-def install(params):
+def install(params: str) -> None:
     print("Use this command:")
     print(f'!conda install -q -y --prefix /usr/local {params} python=3.6')

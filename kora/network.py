@@ -3,11 +3,12 @@ import os
 os.system('pip install pyvis')
 import pyvis
 from pyvis.network import *
+from typing import Union
 
 class Network(pyvis.network.Network):
     """ Same as pyvis but change for Colab notebook """
 
-    def __init__(self, height=500, width=500, **kwargs):
+    def __init__(self, height: Union[int, str] = 500, width: Union[int, str] = 500, **kwargs):
         """ Allow integer as h, w and set notebook=True """
         if type(height)==int:
             height = '%dpx' % height

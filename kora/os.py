@@ -4,7 +4,7 @@ from os import *
 from subprocess import Popen, PIPE, STDOUT
 from time import sleep
 
-def system(cmd):
+def system(cmd: str):
     process = Popen(cmd, shell=True,
                     stdout=PIPE, stderr=STDOUT, 
                     universal_newlines=True)
