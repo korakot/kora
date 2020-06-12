@@ -12,7 +12,7 @@ from IPython.display import HTML
 from .json import render
 
 
-def cut(input='video.mp4', start=0.0, end=60.0, output=None):
+def cut(input : str = 'video.mp4', start: float = 0.0, end: float = 60.0, output: bool = None):
     def ts(mn: float):
         m, s = divmod(100*mn, 100)
         return '{:02.0f}:{:05.2f}'.format(m,s)
@@ -26,12 +26,12 @@ def cut(input='video.mp4', start=0.0, end=60.0, output=None):
 # Example: cut('x.m4a', 2.10, 2.30)
 
 
-def probe(filename):
+def probe(filename: str):
     cmd = f'ffprobe -v quiet -show_format -show_streams -print_format json {filename}'
     return render(getoutput(cmd))
 
 
-def Video(filename, width=400):
+def Video(filename: str, width: int = 400):
     os.system(f'ln -snf {filename} /usr/local/share/jupyter/nbextensions/v.mp4')
     return HTML(f"<video width={width} src='/nbextensions/v.mp4' controls/>")
 

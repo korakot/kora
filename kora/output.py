@@ -1,7 +1,7 @@
 from google.colab.output import *
 from IPython.display import display, Javascript
 
-def set_height(h):
+def set_height(h: str):
     eval_js('google.colab.output.setIframeHeight("%s")' % h)
 
 # Usage:
