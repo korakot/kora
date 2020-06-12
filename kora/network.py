@@ -16,7 +16,7 @@ class Network(pyvis.network.Network):
         kwargs['height'] = height
         kwargs['width']  = width
         kwargs['notebook'] = True
-        super().__init__(*args, **kwargs)
+        super().__init__(**kwargs)
 
     def _repr_html_(self):
         nodes, edges, height, width, options = self.get_network_data()
