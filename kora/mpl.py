@@ -16,7 +16,6 @@ def add_font(url: str) -> str:
         filename = url   # already manual download to colab
     name = get_font_name(filename)
     font_manager.fontManager.addfont(filename)
-    # set_font(family=name)     # select this font automatically
     return name
 
 
