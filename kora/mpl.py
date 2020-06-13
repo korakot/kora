@@ -4,19 +4,20 @@ from matplotlib import *  # font_manager, ft2font, rc
 
 def add_thai_font():
     url = 'https://raw.githubusercontent.com/korakot/kora/40a2bb269383501965c0745055f1ad4f23e167a3/THSarabunChula.ttf'
-    add_font(url)
-    set_font(size=18)
+    name = add_font(url)
+    set_font(family=name, size=18)
 
 add_font_thai = add_thai_font
 
-def add_font(url: str) -> None:
+def add_font(url: str) -> str:
     if url.startswith('http'):
         filename = urlretrieve(url)[0]  # in /tmp/...
     else:
         filename = url   # already manual download to colab
     name = get_font_name(filename)
     font_manager.fontManager.addfont(filename)
-    set_font(family=name)     # select this font automatically
+    # set_font(family=name)     # select this font automatically
+    return name
 
 
 def get_font_name(filename: str):
