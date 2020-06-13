@@ -14,5 +14,6 @@ os.system('pip install psycopg2-binary')  # avoid warning
 magic = get_ipython().run_line_magic
 magic('load_ext', 'sql')
 magic('config', 'SqlMagic.displaycon=False')
+magic('config', 'SqlMagic.feedback=False')
 magic('config', 'SqlMagic.autopandas=True')
 magic('sql', 'postgresql+psycopg2://@/postgres')
