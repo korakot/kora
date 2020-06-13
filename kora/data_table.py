@@ -8,6 +8,7 @@ get_ipython().run_line_magic('load_ext', 'google.colab.data_table')
 # Then, make the default width to fit content, instead of 100%
 from google.colab.data_table import DataTable
 DataTable.min_width = '0'
+DataTable.max_rows = 35000
 
 
 def unload():
