@@ -6,7 +6,9 @@ os.system("service postgresql start")
 os.system("sudo -u postgres psql -c 'CREATE USER root WITH SUPERUSER'")
 
 # update %%sql and add pg special commands
-os.system('pip install -U ipython-sql pgspecial')
+os.system('pip install -U ipython-sql')
+os.system('pip install pgspecial')
+os.system('pip install psycopg2-binary')  # avoid warning
 
 # config for %%sql
 magic = get_ipython().run_line_magic
