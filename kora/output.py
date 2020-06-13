@@ -23,3 +23,17 @@ def set_style(**kw):
 def url_port(port: int):
     """ Convert port number to URL for webapps """
     return eval_js("google.colab.kernel.proxyPort(%d)" % port)
+
+
+def show_port(port, height=400):
+    """ Display webapp at port number in output using iframe """
+    display(Javascript("""
+    (async ()=>{
+        fm = document.createElement('iframe')
+        fm.src = await google.colab.kernel.proxyPort(%s)
+        fm.width = '95%%'
+        fm.height = '%d'
+        fm.frameBorder = 0
+        document.body.append(fm)
+    })();
+    """ % (port, height) ))
