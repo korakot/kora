@@ -18,3 +18,8 @@ def set_style(**kw):
         }
     }
     ''' % json.dumps(kw)))
+
+
+def url_port(port: int):
+    """ Convert port number to URL for webapps """
+    return eval_js("google.colab.kernel.proxyPort(%d)" % port)
