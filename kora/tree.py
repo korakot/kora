@@ -54,7 +54,7 @@ def path_tree(path: Union[str, Path] = '.', show_num: bool = False):
     root = {}
     for p in Path(path).rglob('*'):
         node = root
-        for part in p.parts:
+        for part in p.relative_to(path).parts:
             if part not in node:
                 node[part] = {}
             node = node[part]
