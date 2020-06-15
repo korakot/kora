@@ -1,4 +1,4 @@
-from IPython.display import Javascript, Audio
+from IPython.display import display, Javascript, Audio
 from google.colab import output
 from base64 import b64decode
 
@@ -36,9 +36,11 @@ def audio(sec=3):
 
 # Add to class Audio
 def _audio_save(self, filename=None):
-    """ Audio's method to save as a file """
+    """ Audio's method to save as a file 
+        Default format is probably webm
+    """
     if filename is None:
-        filename = 'audio.wav'  # default name
+        filename = 'audio.webm'  # default name
     with open(filename, 'wb') as f:
         f.write(self.data)
 Audio.save = _audio_save
