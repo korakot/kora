@@ -2,6 +2,9 @@ from google.colab.output import *
 from IPython.display import display, Javascript
 from typing import Union
 
+# path that can serve content
+nbx = '/usr/local/share/jupyter/nbextensions'
+
 def set_height(h: Union[str, int]):
     eval_js('google.colab.output.setIframeHeight("%s")' % h)
 
