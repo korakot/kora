@@ -1,3 +1,4 @@
+import os
 from IPython.display import display, Javascript, Audio
 from google.colab import output
 from base64 import b64decode
@@ -39,8 +40,8 @@ def _audio_save(self, filename=None):
     """ Audio's method to save as a file 
         Default format is probably webm
     """
-    if filename is None:
-        filename = 'audio.webm'  # default name
-    with open(filename, 'wb') as f:
+    with open('/tmp/audio.webm', 'wb') as f:
         f.write(self.data)
+    os.system("ffmpeg -y -i /tmp/audio.webm "+filename)
+    return filename
 Audio.save = _audio_save
