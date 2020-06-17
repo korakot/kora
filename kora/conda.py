@@ -21,6 +21,7 @@ os.system('wget -O mini.sh https://repo.anaconda.com/miniconda/Miniconda3-4.3.21
 os.chmod('mini.sh', 0o777)
 os.system("./mini.sh -b -f -p /usr/local")
 sys.path.insert(5, '/usr/local/lib/python3.6/site-packages')
+os.system("conda config --add channels conda-forge")
 
 def install(params: str) -> None:
     print("Use this command:")
