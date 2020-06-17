@@ -1,6 +1,8 @@
 """ Utility functions not available in google.colab.drive
     Mainly use pydrive
 """
+from os.path import basename
+
 
 def auth_drive():
     from pydrive.auth import GoogleAuth
@@ -28,7 +30,7 @@ def get_file(filename):
 
 
 def upload_public(filename):
-    f = get_file(filename)
+    f = get_file(basename(filename))
     f.SetContentFile(filename)
     f.Upload()
     f.InsertPermission({'type': 'anyone', 'value': 'anyone', 'role': 'reader'})
