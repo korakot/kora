@@ -39,6 +39,7 @@ def upload_public(filename):
 
 
 def download_folder(folder_id):
+    """ I copy this one from my old code, use drive API directly (not pydrive) """
     # authenticate
     from google.colab import auth
     auth.authenticate_user()
