@@ -10,3 +10,4 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 # create a webdriver instance, ready to use
 wd = webdriver.Chrome('chromedriver',options=options)
+wd.select = wd.find_elements_by_css_selector
