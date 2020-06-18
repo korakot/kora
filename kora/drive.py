@@ -2,6 +2,7 @@
     Mainly use pydrive
 """
 from os.path import basename
+from urllib.request import urlretrieve
 
 
 def auth_drive():
@@ -35,3 +36,21 @@ def upload_public(filename):
     f.Upload()
     f.InsertPermission({'type': 'anyone', 'value': 'anyone', 'role': 'reader'})
     return 'https://drive.google.com/uc?id=' + f.get('id')  # direct link
+
+
+def download_folder(folder_id):
+    # authenticate
+    from google.colab import auth
+    auth.authenticate_user()
+    # get folder_name
+    from googleapiclient.discovery import build
+    service = build('drive', 'v3')
+    folder_name = service.files().get(fileId=folder_id).execute()['name']
+    # install library 
+    url = 'https://github.com/segnolin/google-drive-folder-downloader/raw/master/download.py'
+    path = '/usr/local/lib/python3.6/dist-packages/download.py'
+    urlretrieve(url, path)
+    # recursive download
+    import download
+    download.download_folder(service, folder_id, './', folder_name)
+    return folder_name
