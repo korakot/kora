@@ -26,3 +26,7 @@ def get_font_name(filename: str):
 
 def set_font(**kw):
     rc('font', **kw) # family, size
+
+
+# set animation suitable for Colab
+rc('animation', html='jshtml')
