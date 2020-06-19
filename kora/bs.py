@@ -5,7 +5,10 @@ import requests
 
 
 def Soup(s, features='lxml', **kw):
-    """ A fake class, of what BeautifulSoup should have been """
+    """ A fake class, of what BeautifulSoup should have been 
+    
+    It accepts a url or a file, in addition to html/xml as usual
+    """
     if s.startswith('http'):
         src = requests.get(s).text
         return BeautifulSoup(src, features, **kw)
