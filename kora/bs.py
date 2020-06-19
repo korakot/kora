@@ -4,12 +4,12 @@ from bs4 import BeautifulSoup
 import requests 
 
 
-def Soup(s):
-    """ A fake class, what BeautifulSoup should have been """
+def Soup(s, features='lxml', **kw):
+    """ A fake class, of what BeautifulSoup should have been """
     if s.startswith('http'):
         src = requests.get(s).text
-        return BeautifulSoup(src)
+        return BeautifulSoup(src, features, **kw)
     if s.startswith('/') or s.startswith("."):
         src = open(s).read()
-        return BeautifulSoup(src)
-    return BeautifulSoup(s)
+        return BeautifulSoup(src, features, **kw)
+    return BeautifulSoup(s, features, **kw)
