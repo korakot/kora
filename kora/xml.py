@@ -5,7 +5,14 @@ from lxml import etree
 
 
 def render(xml):
-    """ similar to kora.json.render(s) """
+    """ Similar to kora.json.render(s) 
+    
+    Accept both xml string or xml filename
+    """
+    if xml.endswith('.xml'): # a filename
+        with open(xml) as f:
+            xml = f.read()
+            
     template = """
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/borsuksoftware/simpleXML/js/simpleXML.js"></script>
