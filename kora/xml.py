@@ -2,6 +2,7 @@
 
 from IPython.display import HTML
 from lxml import etree
+from bs4 import BeautifulSoup
 
 
 def render(xml):
@@ -12,7 +13,7 @@ def render(xml):
     if xml.endswith('.xml'): # a filename
         with open(xml) as f:
             xml = f.read()
-            
+
     template = """
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/borsuksoftware/simpleXML/js/simpleXML.js"></script>
@@ -36,3 +37,9 @@ def iterparse(source, tag=None, **kw):
     for _, elem in etree.iterparse(source, ("end",), tag=tag, **kw):
         yield elem
         elem.clear()  # auto clear, so, must copy first
+
+
+def soup(elem):
+    """ Convert _Element to BeautifulSoup """
+    s = etree.tostring(elem)
+    return BeautifulSoup(s, 'lxml')
