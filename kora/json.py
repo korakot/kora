@@ -1,4 +1,4 @@
-import json
+from json import *
 from requests import models
 
 from IPython.display import HTML
@@ -17,5 +17,5 @@ models.Response._repr_html_ = lambda rsp: _render_template % rsp.text
 
 def render(jstr):
     if type(jstr) != str:
-        jstr = json.dumps(jstr)
+        jstr = dumps(jstr)
     return HTML(_render_template % jstr)
