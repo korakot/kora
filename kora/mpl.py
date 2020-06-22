@@ -30,3 +30,10 @@ def set_font(**kw):
 
 # set animation suitable for Colab
 rc('animation', html='jshtml')
+
+
+def use_svg(enable=True):
+    """ Set figure_format to SVG """
+    format = 'svg' if enable else 'png'
+    magic = get_ipython().run_line_magic
+    magic('config', f"InlineBackend.figure_format = '{format}'")
