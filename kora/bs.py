@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup
 import requests 
+from os.path import splitext
 
 
 def Soup(s, features='lxml', **kw):
@@ -12,7 +13,7 @@ def Soup(s, features='lxml', **kw):
     if s.startswith('http'):
         src = requests.get(s).text
         return BeautifulSoup(src, features, **kw)
-    if s.startswith('/') or s.startswith("."):
+    if splitext(s)[1] in ('.html', '.xml'):
         src = open(s).read()
         return BeautifulSoup(src, features, **kw)
     return BeautifulSoup(s, features, **kw)
