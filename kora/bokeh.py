@@ -3,7 +3,13 @@
 
 from bokeh import *
 from bokeh import io, plotting
-from bokeh.plotting import figure  
+
+
+def figure(height=600, width=600, **kw):
+    """ Set height, width easily """
+    kw['height'] = height
+    kw['width'] = width
+    return plotting.figure(**kw)
 
 
 def _fig_repr_html(self):
