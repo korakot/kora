@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="kora", 
-    version="0.2.17",
+    version="0.2.18",
     author="Korakot Chaovavanich",
     author_email="korakot@gmail.com",
     description="Convenient tools for Colab",
