@@ -6,6 +6,7 @@ Currently
 Planned
 - Altair, Vega
 - Word Cloud
+- Globe
 
 Some top-level modules to move here
 - bokeh
