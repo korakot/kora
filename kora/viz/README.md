@@ -7,6 +7,7 @@ Planned
 - Altair, Vega
 - Word Cloud
 - Globe
+- Syntax parse tree
 
 Some top-level modules to move here
 - bokeh
