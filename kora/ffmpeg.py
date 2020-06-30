@@ -32,6 +32,7 @@ def probe(filename: str):
 
 
 def Video(filename: str, width: int = 400):
+    filename = os.path.abspath(filename)
     os.system(f'ln -snf {filename} /usr/local/share/jupyter/nbextensions/v.mp4')
     return HTML(f"<video width={width} src='/nbextensions/v.mp4' controls/>")
 
