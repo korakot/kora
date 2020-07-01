@@ -11,3 +11,4 @@ options.add_argument('--disable-dev-shm-usage')
 # create a webdriver instance, ready to use
 wd = webdriver.Chrome('chromedriver',options=options)
 wd.select = wd.find_elements_by_css_selector
+wd.select1 = wd.find_element_by_css_selector
