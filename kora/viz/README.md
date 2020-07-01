@@ -8,6 +8,7 @@ Planned
 - Word Cloud
 - Globe
 - Syntax parse tree
+- Embedding projector
 
 Some top-level modules to move here
 - bokeh
