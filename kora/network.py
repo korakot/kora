@@ -1,6 +1,6 @@
 import os
 
-os.system('pip install pyvis')
+os.system('pip install pyvis jsonpickle')
 import pyvis
 from pyvis.network import *
 from typing import Union
