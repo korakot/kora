@@ -1,11 +1,10 @@
 import os
-import pkg_resources
 from time import sleep
 
+from kora import get_ver
 
-version = pkg_resources.get_distribution("tornado").version
 # Run once only. If call again, will not restart
-if version == '4.5.3':
+if get_ver('tornado') == '4.5.3':
     os.system("pip install -U tornado")  # to 6.0.4
 
     print("Runtime is now restarting...")
