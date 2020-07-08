@@ -4,7 +4,7 @@ from time import sleep
 
 
 version = pkg_resources.get_distribution("tornado").version
-# if run again, will not restart
+# Run once only. If call again, will not restart
 if version == '4.5.3':
     os.system("pip install -U tornado")  # to 6.0.4
 
