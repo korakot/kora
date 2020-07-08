@@ -1,5 +1,5 @@
 """
-Best dataset
+BEST dataset
 
 For thai word segmentation
 """
