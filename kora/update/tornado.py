@@ -1,9 +1,14 @@
 import os
+import pkg_resources
 from time import sleep
 
-os.system("pip install -U tornado")
 
-print("Runtime is now restarting...")
-print("You can ignore the error message [Your session crashed for an unknown reason.]")
-sleep(0.5)
-os._exit(0)  # restart
+version = pkg_resources.get_distribution("tornado").version
+# if run again, will not restart
+if version == '4.5.3':
+    os.system("pip install -U tornado")  # to 6.0.4
+
+    print("Runtime is now restarting...")
+    print("You can ignore the error message [Your session crashed for an unknown reason.]")
+    sleep(0.5)
+    os._exit(0)  # restart
