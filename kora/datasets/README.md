@@ -8,3 +8,4 @@ Currently
 
 - All from keras.datasets, use ds_name.load_data() to return train & test sets.
 - BEST: Thai word segmentation, use BEST.download() to just download & unzip.
+- ORCHID: Thai word and POS tagging
