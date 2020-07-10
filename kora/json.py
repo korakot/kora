@@ -1,5 +1,5 @@
 from json import *
-from requests import models
+import requests
 
 from IPython.display import HTML
 
@@ -12,12 +12,14 @@ new ResizeObserver(google.colab.output.resizeIframeToContent).observe(document.b
 </script>
 """
 
-models.Response._repr_html_ = lambda rsp: _render_template % rsp.text
+requests.models.Response._repr_html_ = lambda rsp: _render_template % rsp.text
 
 
 def render(jstr):
     if type(jstr) != str:
         jstr = dumps(jstr)
+    if jstr.startswith('http'):
+        jstr = requests.get(jstr).text
     if jstr.endswith('.json'):
         with open(jstr) as f:
             jstr = f.read()
