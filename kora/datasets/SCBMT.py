@@ -13,7 +13,7 @@ def download():
     os.system(f"wget {url}")
     os.system(f"unzip -j scb-mt-en-th-2020.zip")
     print("""\
-  There are 8 files:
+  There are 12 files:
     task_master_1.csv                 Chat dialog to achieve a task
     generated_reviews_translator.csv  Reviews translated by translators
     generated_reviews_yn.csv          Reviews checked by translators
