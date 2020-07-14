@@ -1,4 +1,5 @@
 from google.colab.output import *
+from google.colab.output._js_builder import Js
 from IPython.display import display, Javascript
 from typing import Union
 
