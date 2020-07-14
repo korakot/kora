@@ -41,3 +41,18 @@ def show_port(port, height=400):
         document.body.append(fm)
     })();
     """ % (port, height) ))
+
+
+def _js_getattr(self, name):
+    val = self._attr_map.get(name, None)
+    if val is None:
+        val = self._builder(self._join(self._js_value(), name))
+        self._attr_map[name] = val
+    # if it's a common attribute, just eval() it automatically
+    if name in {'name', 'value', 'id', 'length', 'size', 
+                'textContent', 'innerText','innerHTML', 'outerHTML'}:
+        return val.eval()
+    else:
+        return val
+
+Js.__getattr__ = _js_getattr
