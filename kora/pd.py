@@ -3,6 +3,7 @@
 Initially just ability to read and write to google sheet
 """
 
+import os
 import re
 from pandas import *
 import gspread_dataframe
@@ -63,3 +64,29 @@ def _df_to_sheet(self, title,
     return 'https://docs.google.com/spreadsheets/d/' + sheet.spreadsheet.id
 
 DataFrame.to_sheet = _df_to_sheet
+
+
+# Notion.so
+
+def get_notion_client(token=None):
+    # Lazy install notion-py if not installed
+    try: 
+        from notion.client import NotionClient
+    except:
+        os.system("pip install notion")
+        from notion.client import NotionClient
+
+    # Allow access to public notion without token
+    class NotionWrapper(NotionClient):
+        def _update_user_info(self):
+            pass
+    # So, use Wrapper instead of NotionClient
+    return NotionWrapper(token_v2=token)
+
+
+def read_notion(url, **kwargs):
+    """ Just like read_csv """
+    client = get_notion_client()
+    cv = client.get_collection_view(url)
+    data = [row.get_all_properties() for row in cv.collection.get_rows()]
+    return DataFrame(data, **kwargs)
