@@ -1,7 +1,9 @@
 """ Utility functions not available in google.colab.drive
     Mainly use pydrive
 """
+import os
 from os.path import basename
+from pathlib import Path
 from urllib.request import urlretrieve
 
 
@@ -31,6 +33,7 @@ def get_file(filename):
 
 
 def upload_public(filename):
+    """ Upload the file to Google Drive and set permission to public """
     f = get_file(basename(filename))
     f.SetContentFile(filename)
     f.Upload()
@@ -55,3 +58,38 @@ def download_folder(folder_id):
     import download
     download.download_folder(service, folder_id, './', folder_name)
     return folder_name
+
+
+def get_path(file_id, drive=None):
+    """ Use file_id to get the file path in Google Drive """
+    if drive is None:
+        drive = auth_drive()
+    f = drive.CreateFile({'id': file_id})
+    name = f['title']
+    if f['parents']:
+      parent_id = f['parents'][0]['id'] 
+      return get_path(parent_id, drive) / name
+    else:
+      return Path(name)
+
+
+def current_notebook():
+    """ Get the filename, file_id of this notebook """
+    import requests
+    d = requests.get('http://172.28.0.2:9000/api/sessions').json()[0]
+    file_id = d['path'].split('=')[1]
+    return d['name'], file_id
+
+
+def chdir_notebook():
+    """ Change directory to its location in Google Drive"""
+    # first confirm that drive is mounted
+    if not os.path.exists("/content/drive"):
+        from google.colab.drive import mount
+        mount("/content/drive")
+    # then get the directory and change to it
+    _, file_id = current_notebook()
+    path = get_path(file_id)
+    nb_dir = '/content/drive' / path.parent
+    os.chdir(nb_dir)
+    return nb_dir
