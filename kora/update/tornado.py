@@ -4,7 +4,7 @@ from time import sleep
 from kora import get_ver
 
 # Run once only. If call again, will not restart
-if get_ver('tornado') == '4.5.3':
+if get_ver('tornado') == '5.1.1':
     os.system("pip install -U tornado")  # to 6.0.4
 
     print("Runtime is now restarting...")
