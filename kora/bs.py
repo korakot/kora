@@ -3,6 +3,7 @@
 from bs4 import BeautifulSoup
 import requests 
 from os.path import splitext
+from pathlib import Path
 
 
 def Soup(s, features='lxml', **kw):
@@ -10,6 +11,8 @@ def Soup(s, features='lxml', **kw):
     
     It accepts a url or a file, in addition to html/xml as usual
     """
+    if isinstance(s, Path):
+        s = str(s)
     if s.startswith('http'):
         src = requests.get(s).text
         return BeautifulSoup(src, features, **kw)
@@ -17,3 +20,4 @@ def Soup(s, features='lxml', **kw):
         src = open(s).read()
         return BeautifulSoup(src, features, **kw)
     return BeautifulSoup(s, features, **kw)
+    
