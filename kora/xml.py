@@ -1,6 +1,7 @@
 """ Some function I wish some xml library had """
 
 from IPython.display import HTML
+from pathlib import Path
 from lxml import etree
 from bs4 import BeautifulSoup
 
@@ -34,6 +35,8 @@ def iterparse(source, tag=None, **kw):
     
     Just etree.iterparse, with my favorite defaults 
     """
+    if isinstance(source, Path):
+        source = str(source)
     for _, elem in etree.iterparse(source, ("end",), tag=tag, **kw):
         yield elem
         elem.clear()  # auto clear, so, must copy first
