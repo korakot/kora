@@ -13,12 +13,10 @@ def Soup(s, features='lxml', **kw):
     """
     if isinstance(s, Path):
         src = s.read_text()
-        return BeautifulSoup(src, features, **kw)
-    if s.startswith('http'):
+    elif s.startswith('http'):
         src = requests.get(s).text
-        return BeautifulSoup(src, features, **kw)
-    if splitext(s)[1] in ('.html', '.xml'):
+    elif splitext(s)[1] in ('.html', '.xml'):
         src = open(s).read()
-        return BeautifulSoup(src, features, **kw)
-    return BeautifulSoup(s, features, **kw)
-    
+    else:
+        src = s
+    return BeautifulSoup(src, features, **kw)
