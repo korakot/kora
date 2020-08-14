@@ -12,7 +12,8 @@ def Soup(s, features='lxml', **kw):
     It accepts a url or a file, in addition to html/xml as usual
     """
     if isinstance(s, Path):
-        s = str(s)
+        src = s.read_text()
+        return BeautifulSoup(src, features, **kw)
     if s.startswith('http'):
         src = requests.get(s).text
         return BeautifulSoup(src, features, **kw)
