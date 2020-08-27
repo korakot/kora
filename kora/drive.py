@@ -1,10 +1,13 @@
 """ Utility functions not available in google.colab.drive
     Mainly use pydrive
 """
+import sys
 import os
 from os.path import basename
 from pathlib import Path
 from urllib.request import urlretrieve
+
+from google.colab.drive import mount
 
 
 def auth_drive():
@@ -84,8 +87,7 @@ def current_notebook():
 def chdir_notebook():
     """ Change directory to its location in Google Drive"""
     # first confirm that drive is mounted
-    if not os.path.exists("/content/drive"):
-        from google.colab.drive import mount
+    if not Path("/content/drive").exists():
         mount("/content/drive")
     # then get the directory and change to it
     _, file_id = current_notebook()
@@ -93,3 +95,17 @@ def chdir_notebook():
     nb_dir = '/content/drive' / path.parent
     os.chdir(nb_dir)
     return nb_dir
+
+
+def link_nbs():
+    """ Create /nbs as a symlink to "Colab Notebooks".
+    Also add /nbs to python path, so we can store libraries there
+    """
+    if not Path("/content/drive").exists():
+        mount("/content/drive")
+    # create link if not already
+    if not Path("/nbs").exists():
+        os.symlink("/content/drive/My Drive/Colab Notebooks", "/nbs")
+    # add path if not already
+    if '/nbs' not in sys.path:
+        sys.path.insert(5, '/nbs')  # before dist-packages
