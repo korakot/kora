@@ -8,3 +8,7 @@ __version__ = get_ver('kora')
 
 
 IN_COLAB = 'google.colab' in sys.modules
+
+
+# for %edit
+import kora.files
