@@ -19,3 +19,11 @@ WebElement.__str__ = lambda self: self.get_attribute('outerHTML')
 WebElement.__repr__ = WebElement.__str__
 WebElement.select = WebElement.find_elements_by_css_selector
 WebElement.select1 = WebElement.find_element_by_css_selector
+
+# show screenshot easily with _repr_png_
+def _screen_shot(self):
+    from tempfile import NamedTemporaryFile as TempFile
+    tmp = TempFile(suffix='.png')
+    self.save_screenshot(tmp.name)
+    return tmp.read()
+webdriver.Chrome._repr_png_ = _screen_shot
