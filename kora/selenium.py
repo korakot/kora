@@ -19,6 +19,7 @@ WebElement.__str__ = lambda self: self.get_attribute('outerHTML')
 WebElement.__repr__ = WebElement.__str__
 WebElement.select = WebElement.find_elements_by_css_selector
 WebElement.select1 = WebElement.find_element_by_css_selector
+WebElement.__getitem__ = WebElement.get_attribute
 
 # show screenshot easily with _repr_png_
 def _screen_shot(self):
