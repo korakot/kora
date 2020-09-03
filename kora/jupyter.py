@@ -18,5 +18,5 @@ def start(lab=False):
 
 
 def stop():
-    os.system("pkill ngrok")
+    ngrok.kill()
     os.system("pkill jupyter-lab")
