@@ -11,4 +11,5 @@ IN_COLAB = 'google.colab' in sys.modules
 
 
 # for %edit
-import kora.files
+if IN_COLAB:
+    import kora.files
