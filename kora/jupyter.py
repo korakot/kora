@@ -13,7 +13,7 @@ def start(lab=False):
     url = url.replace('http://','https://')
     if not lab:
         url += '/tree'  # normal jupyter notebook
-    os.system("nohup jupyter lab --no-browser --allow-root --ip=0.0.0.0&")
+    os.system("jupyter lab --ip=0.0.0.0&")
     print(url)
 
 
