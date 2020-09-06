@@ -14,6 +14,7 @@ os.system("mv teleconsole /usr/local/bin/")  # in PATH
 with open("/root/.bashrc", "a") as f:
     f.write('PS1="\e[1;36m\w\e[m# "\n')
     f.write("cd /content \n")
+    f.write("PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tools/node/bin:/tools/google-cloud-sdk/bin:/opt/bin \n")
 
 
 def start():
