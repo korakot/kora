@@ -1,5 +1,6 @@
 # install chromium, its driver, and selenium
 import os
+os.system('apt update')
 os.system('apt install chromium-chromedriver')
 os.system('pip install selenium')
 # set options to be headless, ..
