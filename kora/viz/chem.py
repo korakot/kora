@@ -5,6 +5,7 @@ import kora.install.rdkit
 from rdkit import Chem
 from rdkit.Chem import AllChem
 import py3Dmol
+from IPython.core.magic import register_line_magic
 
 
 def plot(smiles, size=(200,200), style='stick'):
@@ -23,3 +24,8 @@ def plot(smiles, size=(200,200), style='stick'):
     viewer.setStyle({style:{}})
     viewer.zoomTo()
     viewer.show()
+
+
+@register_line_magic
+def ch(line):
+  plot(line.strip(), size=(500,300))
