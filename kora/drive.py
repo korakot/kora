@@ -100,6 +100,7 @@ def chdir_notebook():
 def link_nbs():
     """ Create /nbs as a symlink to "Colab Notebooks".
     Also add /nbs to python path, so we can store libraries there
+    Allow import A to get A.ipybn as well
     """
     if not Path("/content/drive").exists():
         mount("/content/drive")
@@ -109,3 +110,18 @@ def link_nbs():
     # add path if not already
     if '/nbs' not in sys.path:
         sys.path.insert(5, '/nbs')  # before dist-packages
+    # install import-ipynb, and set it to use /nbs
+    os.system("pip install import-ipynb")
+    import import_ipynb
+    import_ipynb.find_notebook = find_in_nbs
+
+
+def find_in_nbs(fullname, path=None):
+    """ lookup a notebook file to import """
+    nb_path = '/nbs/' + fullname + '.ipynb'
+    if Path(nb_path).is_file():
+        return nb_path
+    # allow import Notebook_Name for Notebook Name.ipynb
+    nb_path = nb_path.replace("_", " ")
+    if Path(nb_path).is_file():
+        return nb_path
