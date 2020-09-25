@@ -6,10 +6,11 @@ with open('/etc/apt/sources.list.d/pgdg.list', 'w') as f:
   f.write("deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main")
 os.system("apt update")
 
-# install PostgreSQL 13
+# install PostgreSQL 13 and setup for root
 os.system("apt install postgresql-13 postgresql-client-13")
 os.system("service postgresql start")
 os.system("sudo -u postgres psql -c 'CREATE USER root WITH SUPERUSER'")
+os.system("psql postgres -c 'CREATE DATABASE root'")
 
 # update %%sql and add pg special commands
 os.system('pip install -U ipython-sql')
