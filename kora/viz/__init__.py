@@ -6,7 +6,7 @@ from collections import Counter
 
 def histogram(data, name='num', **kw):
     """
-    Doesn't do binning, just a bar chart of Counter()
+    No binning, just a bar chart of Counter()
     **kw can be title, width, or range_x=(0,10)
     """
     import plotly.express as px
