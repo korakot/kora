@@ -3,6 +3,12 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+
+requirements = [
+    "ipython"
+]
+
+
 setuptools.setup(
     name="kora", 
     version="0.6.22",
@@ -12,6 +18,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/airesearch-in-th/kora",
+    install_requires=requirements,
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
