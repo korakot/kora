@@ -17,9 +17,8 @@ es_server = Popen([f'elasticsearch-{ver}/bin/elasticsearch'],
                   stdout=PIPE, stderr=STDOUT,
                   preexec_fn=lambda: os.setuid(1)  # as daemon
                  )
-# while True:
-#     line = es_server.stdout.readline().decode()
-#     if '9200' in line: break     # until ready
+for i in range(77):
+    es_server.stdout.readline()  # wait till started
 
 
 # client magic
@@ -36,11 +35,8 @@ def es(line=None, cell=""):
 
     url = urljoin('http://localhost:9200', path)
     req = requests.Request(method, url, **args).prepare()
-    try:
-        rsp = requests.Session().send(req)
-        return rsp
-    except:
-        print("Elasticsearch is starting, please wait")
+    rsp = requests.Session().send(req)
+    return rsp
 
 # client viz
 def render(r):
