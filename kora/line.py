@@ -78,12 +78,13 @@ class Webhook:
     def debug_mode(self):
         ''' 
         to activate reployraw run
-        `websocket.reply = Websocket.reply_raw`
+        `websocket.debug_mode()`
         '''
         self.reply = self.blank_reply
         self.send_reply = self.send_raw_reply
         
     def send_raw_reply(self, token, text, event):
+        ''' sending event to reply instad of text'''
         url = 'https://api.line.me/v2/bot/message/reply'
         headers = {'Authorization': 'Bearer ' + self.a_token}
         data = {
@@ -95,7 +96,7 @@ class Webhook:
         }
         post(url, headers=headers, json=data)
     def blank_reply(self, event):
-        """ change this to what you like """
+        """ return an event object as string """
         try:
           return json.dumps(event)
         except Exception as e:
