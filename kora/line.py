@@ -1,5 +1,4 @@
-import os
-import logging
+import os, logging, json
 from flask import Flask, request
 from requests import post
 from threading import Thread
@@ -36,12 +35,12 @@ class Webhook:
             event = request.json['events'][0]
             token = event['replyToken']
             text = event['message']['text']
-            self.send_reply(token, text)    
+            self.send_reply(token, text, event)    
             return '{}', 200
         except:
             return "OK", 200
 
-    def send_reply(self, token, text):
+    def send_reply(self, token, text, *args):
         url = 'https://api.line.me/v2/bot/message/reply'
         headers = {'Authorization': 'Bearer ' + self.a_token}
         data = {
@@ -74,3 +73,31 @@ class Webhook:
         ngrok.kill()
         os.system(f"curl 127.0.0.1:{self.port}/shutdown")
         self.thread.join()
+    
+########### debug mode ###########
+    def debug_mode(self):
+        ''' 
+        to activate reployraw run
+        `websocket.reply = Websocket.reply_raw`
+        '''
+        self.reply = self.blank_reply
+        self.send_reply = self.send_raw_reply
+        
+    def send_raw_reply(self, token, text, event):
+        url = 'https://api.line.me/v2/bot/message/reply'
+        headers = {'Authorization': 'Bearer ' + self.a_token}
+        data = {
+            "replyToken": token,
+            "messages":[{
+                "type":"text",
+                "text": self.reply(event) 
+            }]
+        }
+        post(url, headers=headers, json=data)
+    def blank_reply(self, event):
+        """ change this to what you like """
+        try:
+          return json.dumps(event)
+        except Exception as e:
+          return f'{e}'
+        
