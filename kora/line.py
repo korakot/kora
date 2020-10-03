@@ -36,12 +36,12 @@ class Webhook:
             self.event = event # save event for further
             token = event['replyToken']
             text = event['message']['text']
-            self.send_reply(token, text, event)    
+            self.send_reply(token, text)    
             return '{}', 200
         except:
             return "OK", 200
 
-    def send_reply(self, token, text, *args):
+    def send_reply(self, token, text):
         url = 'https://api.line.me/v2/bot/message/reply'
         headers = {'Authorization': 'Bearer ' + self.a_token}
         data = {
