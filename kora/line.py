@@ -33,6 +33,7 @@ class Webhook:
     def serve(self):
         try:
             event = request.json['events'][0]
+            self.event = event # save event for further
             token = event['replyToken']
             text = event['message']['text']
             self.send_reply(token, text, event)    
@@ -75,30 +76,16 @@ class Webhook:
         self.thread.join()
     
 ########### debug mode ###########
+    def debug(self, text):
+        '''
+          to debug, can use `self.reply = self.debug`
+        '''
+        return json.dumps(self.event)
+        
     def debug_mode(self):
         ''' 
-        to activate reployraw run
-        `websocket.debug_mode()`
+          to activate reployraw run
+          self.debug_mode()
         '''
-        self.reply = self.blank_reply
-        self.send_reply = self.send_raw_reply
-        
-    def send_raw_reply(self, token, text, event):
-        ''' sending event to reply instad of text'''
-        url = 'https://api.line.me/v2/bot/message/reply'
-        headers = {'Authorization': 'Bearer ' + self.a_token}
-        data = {
-            "replyToken": token,
-            "messages":[{
-                "type":"text",
-                "text": self.reply(event) 
-            }]
-        }
-        post(url, headers=headers, json=data)
-    def blank_reply(self, event):
-        """ return an event object as string """
-        try:
-          return json.dumps(event)
-        except Exception as e:
-          return f'{e}'
+        self.reply = self.debug
         
