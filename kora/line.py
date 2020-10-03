@@ -1,5 +1,4 @@
-import os
-import logging
+import os, logging, json
 from flask import Flask, request
 from requests import post
 from threading import Thread
@@ -34,6 +33,7 @@ class Webhook:
     def serve(self):
         try:
             event = request.json['events'][0]
+            self.event = event # save event for further
             token = event['replyToken']
             text = event['message']['text']
             self.send_reply(token, text)    
@@ -74,3 +74,18 @@ class Webhook:
         ngrok.kill()
         os.system(f"curl 127.0.0.1:{self.port}/shutdown")
         self.thread.join()
+    
+########### debug mode ###########
+    def debug(self, text):
+        '''
+          to debug, can use `self.reply = self.debug`
+        '''
+        return json.dumps(self.event)
+        
+    def debug_mode(self):
+        ''' 
+          to activate reployraw run
+          self.debug_mode()
+        '''
+        self.reply = self.debug
+        
