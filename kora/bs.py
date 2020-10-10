@@ -1,5 +1,6 @@
 """ What bs4 should have been """
-
+import os
+os.system("pip install beautifulsoup4 -U") # 4.9 for advanced selector
 from bs4 import BeautifulSoup
 import requests 
 from os.path import splitext
