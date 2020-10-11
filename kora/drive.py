@@ -115,7 +115,6 @@ def link_nbs():
     import import_ipynb
     import_ipynb.find_notebook = find_in_nbs
 
-
 def find_in_nbs(fullname, path=None):
     """ lookup a notebook file to import """
     nb_path = '/nbs/' + fullname + '.ipynb'
@@ -125,3 +124,11 @@ def find_in_nbs(fullname, path=None):
     nb_path = nb_path.replace("_", " ")
     if Path(nb_path).is_file():
         return nb_path
+
+
+def install(package):
+    """ Permanently install a package in Colab """
+    link_nbs()
+    cmd = 'pip install --target=/nbs ' + package
+    print('!'+cmd)
+    get_ipython().system(cmd)
