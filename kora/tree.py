@@ -3,6 +3,7 @@ from pathlib import Path
 from subprocess import getoutput
 from IPython.display import HTML
 from typing import List, Union
+from zipfile import ZipFile
 
 _TEMPLATE = '''
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -79,3 +80,15 @@ def tar_tree(filename: str, show_num: bool = False):
     data = convert(root, show_num)
     return fancytree(data)
 
+
+def zip_tree(filename: str, show_num: bool = False):
+    root = {}
+    for m in ZipFile(filename).infolist():
+        if m.is_dir(): continue
+        node = root
+        for part in m.filename.split('/'):
+            if part not in node:
+                node[part] = {}
+            node = node[part]
+    data = convert(root, False)
+    return fancytree(data)
