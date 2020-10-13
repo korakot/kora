@@ -90,5 +90,5 @@ def zip_tree(filename: str, show_num: bool = False):
             if part not in node:
                 node[part] = {}
             node = node[part]
-    data = convert(root, False)
+    data = convert(root, show_num)
     return fancytree(data)
