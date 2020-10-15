@@ -1,4 +1,7 @@
-%%file docker.py
+"""
+Use docker in Colab, by manual pull and extract
+"""
+
 import os
 import json
 import tarfile
