@@ -53,7 +53,7 @@ class DockerTar:
         for layer in self.layers:
             tar = tarfile.open(prefix + layer)
             root[layer] = {}
-            for mem in t.getmembers():
+            for mem in tar.getmembers():
                 if mem.isdir(): continue
                 node = root[layer]
                 for part in mem.name.split('/'):
