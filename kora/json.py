@@ -1,5 +1,6 @@
 from json import *
 import requests
+from fastcore.foundation import patch
 
 from IPython.display import HTML
 
@@ -12,7 +13,9 @@ new ResizeObserver(google.colab.output.resizeIframeToContent).observe(document.b
 </script>
 """
 
-requests.models.Response._repr_html_ = lambda rsp: _render_template % rsp.text
+@patch
+def _repr_html_(self: requests.models.Response):
+    return _render_template % self.text
 
 
 def render(jstr):

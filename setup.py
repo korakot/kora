@@ -5,13 +5,14 @@ with open("README.md", "r") as fh:
 
 
 requirements = [
-    "ipython"
+    "ipython",
+    "fastcore",
 ]
 
 
 setuptools.setup(
     name="kora", 
-    version="0.7.14",
+    version="0.8.0",
     author="Korakot Chaovavanich",
     author_email="korakot@gmail.com",
     description="Convenient tools for Colab",
