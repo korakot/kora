@@ -21,6 +21,9 @@ for i in range(77):
     es_server.stdout.readline()  # wait till started
 
 
+# client
+os.system("pip install elasticsearch")
+
 # client magic
 @register_cell_magic
 def es(line=None, cell=""):
