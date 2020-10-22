@@ -1,9 +1,8 @@
 """ What bs4 should have been """
 import os
 os.system("pip install beautifulsoup4 -U") # 4.9 for advanced selector
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 import requests 
-from os.path import splitext
 from pathlib import Path
 
 
@@ -16,8 +15,11 @@ def Soup(s, features='lxml', **kw):
         src = s.read_text()
     elif s.startswith('http'):
         src = requests.get(s).text
-    elif splitext(s)[1] in ('.html', '.xml'):
+    elif Path(s).exists():
         src = open(s).read()
     else:
         src = s
     return BeautifulSoup(src, features, **kw)
+
+
+Tag.select1 = Tag.select_one
