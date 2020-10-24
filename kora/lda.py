@@ -12,8 +12,16 @@ import pyLDAvis
 from pyLDAvis._display import prepared_data_to_html
 from fastcore.foundation import patch
 
+# avoid warnings, INFO
+from warnings import simplefilter
+simplefilter(action='ignore', category=FutureWarning)  # in model.fit()
 
-def fit(texts, n_topics=5, n_iter=100, seed=None, **kwargs):
+from logging import getLogger, ERROR
+getLogger('guidedlda').setLevel(ERROR)
+getLogger('numexpr.utils').setLevel(ERROR)
+
+
+def fit(texts, n_topics=5, n_iter=500, seed=None, **kwargs):
     vzer = CountVectorizer(tokenizer=word_tokenize)
     X = vzer.fit_transform(texts)
     vocab = vzer.get_feature_names()
