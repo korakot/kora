@@ -8,7 +8,7 @@ import numpy as np
 from pythainlp import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 import guidedlda
-import pyLDAvis
+from pyLDAvis import GuidedLDA
 from pyLDAvis._display import prepared_data_to_html
 from fastcore.foundation import patch
 
@@ -28,7 +28,7 @@ def fit(texts, n_topics=5, n_iter=500, seed=None, **kwargs):
     word2id = vzer.vocabulary_
     opts = get_opts(seed, word2id)
     # create model
-    model = guidedlda.GuidedLDA(n_topics=n_topics, n_iter=n_iter, **kwargs)
+    model = GuidedLDA(n_topics=n_topics, n_iter=n_iter, **kwargs)
     model.fit(X, **opts)  # optional seed
     prepare(model, X, vocab)
     return model
@@ -64,7 +64,7 @@ def prepare(model, X, vocab):
 
 # auto-viz
 @patch
-def _repr_html_(self: guidedlda.GuidedLDA):
+def _repr_html_(self: GuidedLDA):
     data = pyLDAvis.prepare(**self.viz_data)
     return prepared_data_to_html(data)
 
