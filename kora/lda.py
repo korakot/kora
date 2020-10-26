@@ -21,12 +21,12 @@ getLogger('guidedlda').setLevel(ERROR)
 getLogger('numexpr.utils').setLevel(ERROR)
 
 
-def fit(texts, n_topics=5, n_iter=500, seed=None, **kwargs):
+def fit(texts, n_topics=5, n_iter=500, seed=None, seed_confidence=0.15, **kwargs):
     vzer = CountVectorizer(tokenizer=word_tokenize)
     X = vzer.fit_transform(texts)
     vocab = vzer.get_feature_names()
     word2id = vzer.vocabulary_
-    opts = get_opts(seed, word2id)
+    opts = get_opts(seed, word2id, seed_confidence)
     # create model
     model = GuidedLDA(n_topics=n_topics, n_iter=n_iter, **kwargs)
     model.fit(X, **opts)  # optional seed
@@ -34,7 +34,7 @@ def fit(texts, n_topics=5, n_iter=500, seed=None, **kwargs):
     return model
 
 
-def get_opts(seed, word2id):
+def get_opts(seed, word2id, seed_confidence):
     opts = {}
     if seed:  # seed_topic_list e.g. [[w1,w2], [w3,w4]]
         seed_topics = {}   
@@ -42,7 +42,7 @@ def get_opts(seed, word2id):
             for word in st:
                 seed_topics[word2id[word]] = t_id
         opts['seed_topics'] = seed_topics
-        opts['seed_confidence'] = 0.15
+        opts['seed_confidence'] = seed_confidence
     return opts
 
 
