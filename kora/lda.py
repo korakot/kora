@@ -7,8 +7,8 @@ os.system("pip install pyldavis")
 import numpy as np
 from pythainlp import word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
-import guidedlda
-from pyLDAvis import GuidedLDA
+from guidedlda import GuidedLDA
+import pyLDAvis 
 from pyLDAvis._display import prepared_data_to_html
 from fastcore.foundation import patch
 
