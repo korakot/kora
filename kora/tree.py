@@ -62,6 +62,8 @@ def path_tree(path: Union[str, Path] = '.', show_num: bool = False):
     data = convert(root, show_num)
     return fancytree(data)
 
+file_tree = path_tree
+
 
 def tar_tree(filename: str, show_num: bool = False):
     """ Display contents inside a tar file using fancytree
