@@ -8,7 +8,7 @@ import os
 
 def download():
     url = "https://github.com/korakot/corpus/releases/download/v1.0/AIFORTHAI-TSync2Corpus.zip"
-    print("NECTEC licenses TSync2 under CC-BY-NC-SA")
+    print("NECTEC licensed TSync2 under CC-BY-NC-SA")
     print("Start downloading: .. ")
     os.system(f"wget {url}")
     os.system("unzip AIFORTHAI-TSync2Corpus.zip")

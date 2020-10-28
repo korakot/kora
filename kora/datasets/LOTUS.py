@@ -8,7 +8,7 @@ import os
 
 def download():
     url = "https://github.com/korakot/corpus/releases/download/v1.0/AIFORTHAI-LotusCorpus.zip"
-    print("NECTEC licenses LOTUS under CC-BY-NC-SA")
+    print("NECTEC licensed LOTUS under CC-BY-NC-SA")
     print("Start downloading: .. ")
     os.system(f"wget {url}")
     os.system("unzip AIFORTHAI-LotusCorpus.zip")
