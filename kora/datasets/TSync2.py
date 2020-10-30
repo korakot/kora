@@ -12,4 +12,5 @@ def download():
     print("Start downloading: .. ")
     os.system(f"wget {url}")
     os.system("unzip AIFORTHAI-TSync2Corpus.zip")
+    os.system("rm AIFORTHAI-TSync2Corpus.zip")
     print("Finished")

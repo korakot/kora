@@ -12,4 +12,5 @@ def download():
     print("Start downloading: .. ")
     os.system(f"wget {url}")
     os.system("unzip TSync1Corpus.zip")
+    os.system("rm TSync1Corpus.zip")
     print("Finished")
