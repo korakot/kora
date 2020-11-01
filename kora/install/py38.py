@@ -1,6 +1,5 @@
 import os
-os.system("pip install pyngrok")
-from pyngrok import ngrok
+from kora import ngrok
 
 # install anaconda3
 os.system("wget -O ac.sh https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh")
@@ -17,5 +16,5 @@ with open(startup_fname, 'w') as f:
   f.write("import os; os.environ['PATH'] = '/root/anaconda3/bin:' + os.environ['PATH']")
 
 # show URL
-url = ngrok.connect(8888)
-print(url.replace('http','https')+'/tree')
+url = ngrok.connect(8888).public_url
+print(url)

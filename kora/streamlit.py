@@ -1,15 +1,14 @@
 import os
 from pathlib import Path
-os.system("pip install streamlit pyngrok")
-from pyngrok import ngrok
+os.system("pip install streamlit")
+from kora import ngrok
 
 
 def start(script=None):
     """ run the script and connect with ngrok"""
     if script is None:
         script = guess_file()
-    url = ngrok.connect(8501)
-    url = url.replace('http:', 'https:')
+    url = ngrok.connect(8501).public_url
     print(url)
     os.system(f"streamlit run {script} --server.runOnSave=true &")
 
