@@ -1,7 +1,7 @@
 import os
 from time import sleep
 
-os.system("add-apt-repository -y ppa:dqlite/stable")
+os.system("add-apt-repository -y ppa:sergey-dryabzhinsky/packages")
 os.system("apt update")
 os.system("apt install sqlite3")
 
