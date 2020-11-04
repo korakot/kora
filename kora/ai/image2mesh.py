@@ -15,6 +15,7 @@ image_path = '/content/sample_images/test.png'  # always use this (overwrite)
 
 
 # pose estimation to crop image
+print('Installing pose estimation.')
 os.system("npx degit Daniil-Osokin/lightweight-human-pose-estimation.pytorch pose-est")
 os.chdir('/content/pose-est')
 from models.with_mobilenet import PoseEstimationWithMobileNet
@@ -23,6 +24,7 @@ from modules.load_state import load_state
 from modules.pose import Pose, track_poses
 import demo
 # pretrained pose model
+print("Downloading pose estimation model.")
 url = 'https://download.01.org/opencv/openvino_training_extensions/models/human_pose_estimation/checkpoint_iter_370000.pth'
 os.system(f'wget {url}')
 # load it
@@ -93,16 +95,19 @@ def get_rect(net, images, height_size):
 
 # get_rect(net.cuda(), [image_path], 512)
 
+
 # done with get_rect, now chdir back
 os.chdir('/content')
 
+# install pifuhd
+print("Installing PIFuHD.")
+os.system("npx degit facebookresearch/pifuhd/apps apps")
+os.system("npx degit facebookresearch/pifuhd/lib lib")
 # download pre-trained pifuhd
+print("Downloading PIFuHD model.")
 os.system("mkdir checkpoints")
 url = "https://dl.fbaipublicfiles.com/pifuhd/checkpoints/pifuhd.pt"
 os.system(f"wget -P checkpoints {url}")
-# install pifuhd
-os.system("npx degit facebookresearch/pifuhd/apps apps")
-os.system("npx degit facebookresearch/pifuhd/lib lib")
 
 
 # !python -m apps.simple_test -r 256 --use_rect
@@ -118,3 +123,4 @@ def open(fname=None):
     # finally generate 3d mesh
     os.system("python -m apps.simple_test -r 256 --use_rect")
     mesh = trimesh.load('/content/results/pifuhd_final/recon/result_test_256.obj')
+    return mesh
