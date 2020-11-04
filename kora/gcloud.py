@@ -35,3 +35,10 @@ def enable(service):
     if not service.endswith('.googleapis.com'):
         service += '.googleapis.com'
     sh(f'gcloud services enable {service}')
+
+
+def upload(fname, target='gcs://kora-data'):
+    """ Target can be your own gcs, and can rename the file too.
+    Default target is kora's gcs which is publicly writable (auto-delete everyday)
+    """
+    sh(f"gsutil cp {fname} {target}")

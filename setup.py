@@ -12,7 +12,7 @@ requirements = [
 
 setuptools.setup(
     name="kora", 
-    version="0.8.32",
+    version="0.8.33",
     author="Korakot Chaovavanich",
     author_email="korakot@gmail.com",
     description="Convenient tools for Colab",
