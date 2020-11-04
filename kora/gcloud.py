@@ -37,7 +37,7 @@ def enable(service):
     sh(f'gcloud services enable {service}')
 
 
-def upload(fname, target='gcs://kora-data'):
+def upload(fname, target='gs://kora-data'):
     """ Target can be your own gcs, and can rename the file too.
     Default target is kora's gcs which is publicly writable (auto-delete everyday)
     """
