@@ -7,8 +7,7 @@ def get_ver(package):
 __version__ = get_ver('kora')
 
 
-IN_COLAB = 'google.colab' in sys.modules
-
+from fastcore.imports import IN_COLAB
 
 # for %edit
 if IN_COLAB:
