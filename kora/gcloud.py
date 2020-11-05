@@ -3,6 +3,7 @@ Convenient tools that call gcloud or gsutil
 or work with Google Cloud Platform
 """
 import os
+from os.path import basename
 from IPython import get_ipython
 
 sh = get_ipython().system
@@ -37,8 +38,11 @@ def enable(service):
     sh(f'gcloud services enable {service}')
 
 
-def upload(fname, target='gs://kora-data'):
-    """ Target can be your own gcs, and can rename the file too.
+def upload(fname, gs='gs://kora-data'):
+    """ Target can be your own gcs, or a subdir inside it.
     Default target is kora's gcs which is publicly writable (auto-delete everyday)
     """
+    gs = gs.rstrip('/')
+    target = f'{gs}/{basename(fname)}'
     sh(f"gsutil cp {fname} {target}")
+    return target
