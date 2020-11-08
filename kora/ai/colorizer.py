@@ -34,6 +34,7 @@ os.system("rm colorization_checkpoints.zip")
 
 # Install Detectron
 print("Installing Detectron2")
+os.system("pip install pyyaml -U")  # 5.1+
 os.system("pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu101/index.html")
 PIL.TiffTags.IFD = 13   # instead of restart
 
