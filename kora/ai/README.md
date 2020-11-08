@@ -1,1 +1,1 @@
-Cool AIs that are easy to use.
+Cool AIs made easy to use.
