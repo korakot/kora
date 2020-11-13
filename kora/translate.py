@@ -17,4 +17,6 @@ def to_th(text):
     t = translator.translate(text, dest='th')
     return t.text
 
-
+def many(texts, to='th'):
+    translations = translator.translate(texts, dest=to)
+    return [t.text for t in translations]
