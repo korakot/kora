@@ -90,3 +90,20 @@ def read_notion(url, **kwargs):
     cv = client.get_collection_view(url)
     data = [row.get_all_properties() for row in cv.collection.get_rows()]
     return DataFrame(data, **kwargs)
+
+
+def to_interval(istr):
+    """
+    Convert from string to pd.Interval
+    Useful for reading a csv with IntervalIndex
+       pd.read_csv(path, index_col=0, converters={0: to_interval})
+    """
+    c_left = istr[0]=='['
+    c_right = istr[-1]==']'
+    closed = {(True, False): 'left',
+              (False, True): 'right',
+              (True, True): 'both',
+              (False, False): 'neither'
+             }[c_left, c_right]
+    left, right = map(float, istr[1:-1].split(','))
+    return Interval(left, right, closed)
