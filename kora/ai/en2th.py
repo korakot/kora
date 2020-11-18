@@ -12,7 +12,7 @@ from fairseq.models.transformer import TransformerModel
 
 # download model
 url = 'https://github.com/vistec-AI/model-releases/releases/download/SCB_1M%2BTBASE_v1.0/SCB_1M-MT_OPUS+TBASE_en-th_spm-spm_32000-joined_v1.0.tar.gz'
-system.os(f'curl -L {url} | tar xz')
+os.system(f'curl -L {url} | tar xz')
 
 model = TransformerModel.from_pretrained(
     model_name_or_path='SCB_1M-MT_OPUS+TBASE_en-th_spm-spm_32000-joined_v1.0/models/',
