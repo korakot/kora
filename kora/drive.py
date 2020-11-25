@@ -6,6 +6,7 @@ import os
 from os.path import basename
 from pathlib import Path
 from urllib.request import urlretrieve
+from urllib.parse import unquote
 
 from google.colab.drive import mount
 
@@ -80,8 +81,9 @@ def current_notebook():
     """ Get the filename, file_id of this notebook """
     import requests
     d = requests.get('http://172.28.0.2:9000/api/sessions').json()[0]
+    filename = unquote(d['name'])
     file_id = d['path'].split('=')[1]
-    return d['name'], file_id
+    return filename, file_id
 
 
 def chdir_notebook():
