@@ -28,10 +28,13 @@ os.system("nj/bin/neo4j start")
 print("Installing py2neo")
 os.system("pip install py2neo")  # errors can be ignore
 from py2neo import *   # e.g. Node, Relationship, Graph
-graph = Graph("bolt://localhost:7687")  # connect to server
+graph = None # Graph("bolt://localhost:7687")  # connect to server
 
 
 # Use %%nj similar to %%cypher
 @register_cell_magic
 def nj(line, cell=None):
+    global graph
+    if graph is None:
+        graph = Graph("bolt://localhost:7687")
     return graph.run(cell or line).to_data_frame()
