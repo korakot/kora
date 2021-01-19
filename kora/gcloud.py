@@ -46,3 +46,12 @@ def upload(fname, gs='gs://kora-data'):
     target = f'{gs}/{basename(fname)}'
     sh(f"gsutil cp {fname} {target}")
     return target
+
+def session():
+    """ Use requests session with default authorization to gcp """
+    import google.auth
+    from google.auth.transport.requests import AuthorizedSession
+    from google.colab import auth
+    auth.authenticate_user()
+    cred = google.auth.default()[0]
+    return AuthorizedSession(cred)
