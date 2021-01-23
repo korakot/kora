@@ -21,10 +21,12 @@ def start():
     """ start the teleconsole, and print URL """
     process = Popen("teleconsole", shell=True,
                     stdin=PIPE, stdout=PIPE, stderr=PIPE)
-    for i in range(6):
-        line = process.stdout.readline()
-    url = line.decode().strip().split()[-1]
-    print("Console URL:", url)
+    lines = [process.stdout.readline().decode() for i in range(6)]
+    try:
+        url = lines[-1].strip().split()[-1]
+        print("Console URL:", url)
+    except:
+        print(''.join(lines))
 
 
 def stop():
