@@ -3,7 +3,7 @@ Allow using normal Jupyter Notebook and Jupyter Lab in Colab
 """
 
 import os
-os.system("pip install jupyterlab")
+os.system("pip install jupyterlab==2.2.9")
 from kora import ngrok
 
 
