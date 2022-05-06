@@ -12,13 +12,13 @@ requirements = [
 
 setuptools.setup(
     name="kora", 
-    version="0.9.19",
+    version="0.9.20",
     author="Korakot Chaovavanich",
     author_email="korakot@gmail.com",
     description="Convenient tools for Colab",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/airesearch-in-th/kora",
+    url="https://github.com/korakot/kora",
     install_requires=requirements,
     packages=setuptools.find_packages(),
     classifiers=[
